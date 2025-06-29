@@ -1,3 +1,6 @@
+import { Route, Routes } from "react-router-dom";
+import { HomePage } from "./src/pages";
+import { Footer, Navbar } from "./src/components";
 import "./styles.css";
 
 function App() {
@@ -5,14 +8,18 @@ function App() {
     <>
       <div className="grid-container">
         {/* <Context> */}
-        <header id="header"></header>
+        <header id="header">
+          <Navbar />
+        </header>
         <main id="main">
           <Routes>
-            <Route path="/" element={console.log("Home")} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/*" element={console.log("Crear Error")} />
           </Routes>
         </main>
-        <footer id="footer"></footer>
+        <footer id="footer">
+          <Footer />
+        </footer>
         {/* </Context> */}
       </div>
     </>
