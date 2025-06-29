@@ -1,11 +1,7 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./styles.css";
 
 function App() {
   
-
   return (
     <>
     <h2>Prueba del E-Commerce  Cesar Soto</h2>
@@ -13,4 +9,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
