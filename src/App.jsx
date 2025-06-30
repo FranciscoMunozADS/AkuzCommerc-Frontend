@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { HomePage } from "./src/pages";
+import { HomePage, ProfilePage } from "./src/pages";
 import { Footer, Navbar } from "./src/components";
 import "./styles.css";
 
@@ -14,6 +14,7 @@ function App() {
         <main id="main">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/*" element={console.log("Crear Error")} />
           </Routes>
         </main>

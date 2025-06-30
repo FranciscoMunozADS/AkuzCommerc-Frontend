@@ -1,18 +1,12 @@
 import { NavLink } from "react-router-dom";
 import "./styles.css";
-import { useEffect, useState } from "react";
 
 export const navbar = () => {
-  const [tokenJwt, setTokenJwt] = useState(true);
+
+  const tokenJwt = true
 
   const setActiveClass = ({ isActive }) =>
     isActive ? `Route isActive` : "Route";
-
-  const toggleLogin = () => {
-    setTokenJwt((prev) => !prev);
-  };
-
-  useEffect(() => {}, [tokenJwt]);
 
   return (
     <>
