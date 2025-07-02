@@ -1,0 +1,57 @@
+.Container_Navbar {
+  width: 100%;
+
+  > .Content_Navbar {
+    align-items: center;
+    background-color: #161616;
+    display: flex;
+    justify-content: space-between;
+
+    > .Left_btn {
+      align-items: center;
+      display: flex;
+      margin: 0.5rem 0rem 0.5rem 0.5rem;
+
+      > .isActive {
+        color: #fff !important;
+      }
+
+      > p {
+        color: #b8b8b8;
+      }
+
+      > .Route {
+        text-decoration: none;
+        background-color: transparent;
+        border-radius: 0.3rem;
+        color: #b8b8b8;
+        cursor: pointer;
+        margin-left: 0.8rem;
+        padding: 0.2rem 0.4rem;
+      }
+    }
+
+    > .Right_btn {
+      display: flex;
+      margin: 0.5rem 0.5rem 0.5rem 0rem;
+
+      > .isActive {
+        color: #fff !important;
+      }
+
+      > p {
+        color: #b8b8b8;
+      }
+
+      > .Route {
+        text-decoration: none;
+        background-color: transparent;
+        border-radius: 0.3rem;
+        color: #b8b8b8;
+        cursor: pointer;
+        margin-left: 0.8rem;
+        padding: 0.2rem 0.4rem;
+      }
+    }
+  }
+}
