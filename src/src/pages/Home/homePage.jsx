@@ -47,10 +47,12 @@ export const homePage = () => {
           {Productos.map((item) => (
             // Componente CARD, se le pasa por props lo que se va a mostrar
             <Card
+              id={item.id}
               descripcion={item.descripcion}
               precio={item.precio}
               stock={item.stock}
               urlImg={item.urlImg}
+              categoria={item.categoria}
             />
           ))}
         </div>

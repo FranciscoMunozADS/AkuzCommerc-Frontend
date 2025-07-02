@@ -4,3 +4,5 @@ export { footer as Footer } from "./Footer/footer";
 export { banner as Banner } from "./Banner/banner";
 export { card as Card } from "./Card/card";
 export { btnNavigate as BtnNavigate } from "./BtnNavigate/btnNavigate";
+export { productPage as ProductPage } from "./Product/productPage";
+
