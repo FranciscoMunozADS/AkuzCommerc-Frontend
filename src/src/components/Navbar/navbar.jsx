@@ -2,8 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./styles.css";
 
 export const navbar = () => {
-
-  const tokenJwt = true
+  const tokenJwt = true;
 
   const setActiveClass = ({ isActive }) =>
     isActive ? `Route isActive` : "Route";
@@ -13,7 +12,6 @@ export const navbar = () => {
       <div className="Container_Navbar">
         <div className="Content_Navbar">
           <div className="Left_btn">
-            {/* <p>Akuz Produit</p> */}
             <NavLink to="/" className={setActiveClass}>
               Home
             </NavLink>
@@ -28,13 +26,16 @@ export const navbar = () => {
             </NavLink>
           </div>
           <div className="Right_btn">
+            {/* Uso de Ternarios para mostrar las rutas definidas, 
+            Si tiene el token activo, mostrar Perfil y Cerrar Sesión, 
+            Si no tiene el token activo, mostrar Registrarse y Login */}
             {tokenJwt ? (
               <>
                 <NavLink className={setActiveClass} to="/profile">
                   Profile
                 </NavLink>
                 <NavLink className="Route">
-                  <a onClick={toggleLogin}>Cerrar Sesión</a>
+                  <a>Cerrar Sesión</a>
                 </NavLink>
               </>
             ) : (
@@ -42,11 +43,8 @@ export const navbar = () => {
                 <NavLink to="/register" className={setActiveClass}>
                   Registrate
                 </NavLink>
-                {/* <NavLink to="/login" className={setActiveClass}>
+                <NavLink to="/login" className={setActiveClass}>
                   Login
-                </NavLink> */}
-                <NavLink className={"Route"}>
-                  <a onClick={toggleLogin}>Login</a>
                 </NavLink>
               </>
             )}

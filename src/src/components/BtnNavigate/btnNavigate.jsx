@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
+// Componente para la navegación a los productos, separados por Café, Ajos y Extras
+
 export const btnNavigate = () => {
   const navigate = useNavigate();
 

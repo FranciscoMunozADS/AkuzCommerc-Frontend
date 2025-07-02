@@ -30,7 +30,7 @@ export const Productos = [
     descripcion: "Miel pura 1Kg",
     descripcionDetallada:
       "Líquido dulce que fabrican las abejas usando el néctar de las plantas con flores. Existen alrededor de 320 tipos diferentes de miel, que varían en color, aroma y sabor.",
-    precio: 10,
+    precio: 10000,
     stock: 10,
     urlImg:
       "https://dojiw2m9tvv09.cloudfront.net/93845/product/X_miel2342.png?9&time=1751231939",
@@ -41,12 +41,20 @@ export const Productos = [
 
 export const Usuario = [
   {
-    id : 1,
+    id: 1,
     idUsuario: 1,
     nombre_completo: "Pepito Ignacio Pérez Gómez",
     telefono: 12345678,
     email: "usuarioPepito@test.cl",
     password: "secretKey",
-    url_avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqEs7QDULIpNjmTV7oIZwoEKeS-nmASLZLYQ&s"
+    url_avatar:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqEs7QDULIpNjmTV7oIZwoEKeS-nmASLZLYQ&s",
+    historial: [
+      {
+        cantidad_vendida: 3,
+        precio_producto: 41990,
+        fecha_compra: "01072025",
+      },
+    ],
   },
-]
+];

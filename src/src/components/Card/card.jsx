@@ -2,6 +2,8 @@ import { formatClp } from "../../helpers/function";
 import "./styles.css";
 
 export const card = ({ descripcion, precio, stock, urlImg }) => {
+  // Recibe 4 valores mediante Props, para la creación de la Card
+  // TODO: Implementar vista de "Ver Mas..." y Agregar al Carrito
   return (
     <>
       <div className="Container_Card">
