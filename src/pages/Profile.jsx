@@ -1,18 +1,21 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 
 const Profile = () => {
-  const { logout } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
 
   return (
     <>
-    <h1>Perfil de usuario</h1>
-    <button className="mt-3 btn btn-danger btn-lg" onClick={logout}>
+      <div>
+        <h1>Perfil de {user?.nombre_completo}</h1>
+        <p>Email: {user?.email}</p>
+        <p>Teléfono: {user?.telefono}</p>
+      </div>
+      <button className="mt-3 btn btn-danger btn-lg" onClick={logout}>
         Cerrar sesión
-    </button>
+      </button>
     </>
   );
-
 };
 
 export default Profile;

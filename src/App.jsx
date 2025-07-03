@@ -1,6 +1,7 @@
 import "./styles.css";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Login from "./pages/Login";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { useContext } from "react";
@@ -21,8 +22,8 @@ function App() {
             <Route path="*" element={<h1>Página no encontrada</h1>} />
             {/* Ruta Protegida */}
             <Route path="/register" element={token ? <Navigate to="/profile"/> : <Register />} />
-            <Route path="/profile" element={<Profile/>}/>
-            <Route path="/login" element={<h1>Aqui se inicia sesión</h1>} />
+            <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login"/>}/>
+            <Route path="/login" element={<Login/>} />
           </Routes>
         </main>
         <footer id="footer"></footer>

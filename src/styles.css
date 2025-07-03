@@ -37,7 +37,7 @@ footer {
   width: 100%;
 }
 
-#registerBtn {
+#registerBtn, #loginBtn {
   background-color: gray;
   color: white;
   padding: 10px 20px;
@@ -45,7 +45,7 @@ footer {
   border-color: black;
 }
 
-#registerBtn:hover{
+#registerBtn:hover, #loginBtn:hover{
   background-color: #9e6a1c;
   cursor: pointer;
 }

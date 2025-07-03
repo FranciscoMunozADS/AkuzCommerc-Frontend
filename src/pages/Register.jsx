@@ -59,7 +59,12 @@ const Register = () => {
 
     // método register desde el contexto
     try {
-      await register(signupData.email, signupData.password);
+      await register(
+        signupData.email,
+        signupData.password,
+        signupData.phone,
+        signupData.urlAvatar
+      );
       navigate("/profile");
     } catch (error) {
       alert("Error al registrar.");
@@ -71,6 +76,7 @@ const Register = () => {
       phone: "",
       password: "",
       confirmPassword: "",
+      urlAvatar: "",
     });
   };
 
@@ -81,6 +87,8 @@ const Register = () => {
       navigate("/profile");
     }
   }, [token, navigate]);
+
+  const [showPassword, setShowPassword] = useState(false); // estado para controlar visibilidad de contraseña
 
   return (
     <>
@@ -149,7 +157,7 @@ const Register = () => {
             </label>
             <div className="col-sm-9">
               <input
-                type="urlAvatar"
+                type="url"
                 className="form-control bg-light"
                 id="urlAvatar"
                 name="urlAvatar"
@@ -169,7 +177,7 @@ const Register = () => {
             </label>
             <div className="col-sm-9">
               <input
-                type="string"
+                type={showPassword ? "text" : "password"}
                 className="form-control bg-light"
                 id="password"
                 name="password"
@@ -180,7 +188,7 @@ const Register = () => {
             </div>
           </div>
           {/* Confirmar Password */}
-          <div className="mb-3 row align-items-center">
+          <div className="mb-3 row align-items-start">
             <label
               htmlFor="confirmPassword"
               className="col-sm-3 col-form-label text-sm-start"
@@ -189,7 +197,7 @@ const Register = () => {
             </label>
             <div className="col-sm-9">
               <input
-                type="string"
+                type={showPassword ? "text" : "password"}
                 className="form-control bg-light"
                 id="confirmPassword"
                 name="confirmPassword"
@@ -197,6 +205,18 @@ const Register = () => {
                 value={signupData.confirmPassword}
                 onChange={updateSignupData}
               />
+              <div className="form-check mt-2 d-inline-flex gap-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="showPassword"
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)}
+                />
+                <label className="form-check-label" htmlFor="showPassword">
+                  Mostrar contraseña
+                </label>
+              </div>
             </div>
           </div>
           <button type="submit" id="registerBtn" className="mt-3 btn btn-lg">
