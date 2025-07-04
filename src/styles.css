@@ -1,3 +1,10 @@
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -28,4 +35,24 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+#registerBtn, #loginBtn {
+  background-color: gray;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border-color: black;
+}
+
+#registerBtn:hover, #loginBtn:hover{
+  background-color: #9e6a1c;
+  cursor: pointer;
+}
+
+.registerLogo {
+  background-color: #7A3F06;
+  width: fit-content;
+  border: 1px solid black;
+  border-radius: 20px;
 }
