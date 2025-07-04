@@ -47,6 +47,7 @@ export const homePage = () => {
           {Productos.map((item) => (
             // Componente CARD, se le pasa por props lo que se va a mostrar
             <Card
+              key={item.id}
               id={item.id}
               descripcion={item.descripcion}
               precio={item.precio}

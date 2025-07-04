@@ -34,9 +34,7 @@ export const navbar = () => {
                 <NavLink className={setActiveClass} to="/profile">
                   Profile
                 </NavLink>
-                <NavLink className="Route">
-                  <a>Cerrar Sesión</a>
-                </NavLink>
+                <NavLink className="Route">Cerrar Sesión</NavLink>
               </>
             ) : (
               <>

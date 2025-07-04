@@ -32,8 +32,8 @@ export const productPage = () => {
           <p className="text">Producto Seleccionado</p>
         </div>
         {prod.map(
-          ({ urlImg, descripcion, precio, stock, descripcionDetallada }) => (
-            <div className="content_product">
+          ({ urlImg, descripcion, precio, stock, descripcionDetallada }, index) => (
+            <div key={index} className="content_product">
               <div className="left">
                 <img className="imgProduct" src={urlImg} alt={descripcion} />
                 <div className="casilla">
