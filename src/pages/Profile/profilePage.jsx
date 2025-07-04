@@ -1,12 +1,14 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { BtnNavigate } from "../../components";
-import { Usuario } from "../../data/data";
+import { UserContext } from "../../context/UserContext";
 import { formatCellNumber } from "../../helpers/function";
 import "./styles.css";
 
 export const profilePage = () => {
+
+  const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
-  const [{ nombre_completo, email, telefono, url_avatar }] = Usuario;
 
   const handleHistory = () => {
     navigate("/profile/history");
@@ -16,6 +18,8 @@ export const profilePage = () => {
     navigate("/profile/addProduct");
   };
 
+  console.log(user)
+
   return (
     <>
       <div className="Container_profile">
@@ -24,17 +28,17 @@ export const profilePage = () => {
         </div>
         <div className="card_info">
           <div className="imgProfile">
-            <img src={url_avatar} alt={nombre_completo} />
+            <img src={user.urlAvatar} alt={user.nombre_completo} />
           </div>
           <div className="textProfile">
             <div className="casilla">
-              <p>{nombre_completo}</p>
+              <p>{user.nombre_completo}</p>
             </div>
             <div className="casilla">
-              <p>{email}</p>
+              <p>{user.email}</p>
             </div>
             <div className="casilla">
-              <p>{formatCellNumber(telefono)}</p>
+              <p>{formatCellNumber(user.telefono)}</p>
             </div>
             <div className="btnHistory">
               <button onClick={handleHistory}>Historial de Compras</button>
@@ -53,7 +57,7 @@ export const profilePage = () => {
         </div>
 
         <div className="btnLogout">
-            <button>
+            <button onClick={logout}>
                 Cerrar Sesión
             </button>
         </div>

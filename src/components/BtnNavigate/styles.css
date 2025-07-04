@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
 
-  > .btn {
+  > .btnStyles {
     width: 100%;
     max-width: 8rem;
     padding: 1rem;
@@ -16,7 +16,7 @@
     margin: 0rem 1rem 0rem 1rem;
   }
 
-  > .btn:hover {
+  > .btnStyles:hover {
     color: #d7d7d7;
   }
 

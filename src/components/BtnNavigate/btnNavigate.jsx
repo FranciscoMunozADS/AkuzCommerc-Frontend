@@ -21,13 +21,13 @@ export const btnNavigate = () => {
   return (
     <>
       <div className="Container_Btns">
-        <button className="btn btnCafe" onClick={handleCoffee}>
+        <button className="btnStyles btnCafe" onClick={handleCoffee}>
           Cafés
         </button>
-        <button className="btn btnAjo" onClick={handleGarlic}>
+        <button className="btnStyles btnAjo" onClick={handleGarlic}>
           Ajos
         </button>
-        <button className="btn btnExtra" onClick={handleExtra}>
+        <button className="btnStyles btnExtra" onClick={handleExtra}>
           Extras
         </button>
       </div>

@@ -96,6 +96,7 @@ export const UserProvider = ({ children }) => {
       email: usuarioEncontrado.email,
       nombre_completo: usuarioEncontrado.nombre_completo,
       telefono: usuarioEncontrado.telefono,
+      urlAvatar: usuarioEncontrado.url_avatar
     };
 
     localStorage.setItem("token", fakeToken);
@@ -105,7 +106,7 @@ export const UserProvider = ({ children }) => {
   };
 
   // Simulación de registro con token
-  const register = async (email, password, telefono) => {
+  const register = async (email, password, telefono, urlAvatar) => {
     // Validación de si existe el correo
     const correoExiste = await Usuario.filter((user) => user.email === email);
    /*  console.log(email);

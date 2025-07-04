@@ -43,6 +43,10 @@
         color: #b8b8b8;
       }
 
+      > button {
+        outline: none;
+      }
+
       > .Route {
         text-decoration: none;
         background-color: transparent;

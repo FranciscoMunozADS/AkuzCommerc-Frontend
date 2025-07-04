@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import "./styles.css";
+import { UserContext } from "../../context/UserContext";
+import { useContext } from "react";
 
 export const navbar = () => {
-  const tokenJwt = false;
+  const { token, logout } = useContext(UserContext);
 
   const setActiveClass = ({ isActive }) =>
     isActive ? `Route isActive` : "Route";
@@ -29,12 +31,12 @@ export const navbar = () => {
             {/* Uso de Ternarios para mostrar las rutas definidas, 
             Si tiene el token activo, mostrar Perfil y Cerrar Sesión, 
             Si no tiene el token activo, mostrar Registrarse y Login */}
-            {tokenJwt ? (
+            {token ? (
               <>
                 <NavLink className={setActiveClass} to="/profile">
                   Profile
                 </NavLink>
-                <NavLink className="Route">Cerrar Sesión</NavLink>
+                <a className="Route" onClick={logout}>Cerrar Sesión</a>
               </>
             ) : (
               <>
