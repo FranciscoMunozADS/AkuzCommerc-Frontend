@@ -1,0 +1,136 @@
+.Container_profile {
+  width: 100%;
+  padding: 1rem;
+
+  > .header {
+    width: 100%;
+    max-width: 10%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 2px solid #9a5615;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #d87b23;
+
+    > .text {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+
+  > .card_info {
+    width: 100%;
+    max-width: 90%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #1e1e1e;
+    margin: 0 auto;
+    padding: 2rem 0rem;
+    border-radius: 10px;
+
+    > .imgProfile {
+      width: 20%;
+      display: flex;
+      justify-content: center;
+
+      > img {
+        width: 100%;
+        max-width: 10rem;
+        height: fit-content;
+        object-fit: contain;
+        border-radius: 99px;
+      }
+    }
+
+    > .textProfile {
+      width: 70%;
+
+      > .casilla {
+        width: 80%;
+        border: 1px solid #000;
+        border-radius: 5px;
+        background-color: #d7d7d7;
+        color: #000;
+        margin-bottom: 1rem;
+        padding: 0.4rem;
+        text-align: center;
+
+        > p {
+          font-size: 1.4rem;
+        }
+      }
+      > .btnHistory {
+        width: 80%;
+        display: flex;
+        justify-content: flex-end;
+
+        > button {
+          font-weight: 600;
+          padding: 0.5rem;
+          background-color: #d87b23;
+          border: 2px solid #9a5615;
+          color: #fff;
+        }
+
+        > button:hover {
+          color: #d7d7d7;
+        }
+      }
+    }
+  }
+
+  > .navigate,
+  .content_producto {
+    width: 100%;
+    max-width: 90%;
+    background-color: #1e1e1e;
+    margin: 0 auto;
+    margin-top: 1rem;
+    padding: 2rem 0rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > p {
+      color: #fff;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  > .content_producto {
+    > button {
+      width: 100%;
+      max-width: fit-content;
+      font-weight: 600;
+      padding: 0.5rem;
+      background-color: #d87b23;
+      border: 2px solid #9a5615;
+      color: #fff;
+    }
+
+    > button:hover {
+        color: #d7d7d7;
+    }
+  }
+
+  > .btnLogout {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+
+    > button {
+      font-weight: 600;
+      padding: 0.8rem;
+      background-color: #ff0000;
+      border: 2px solid #7e0000;
+      border-radius: 5px;
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+.Container {
+  width: 100%;
+
+  > .content {
+    width: 100%;
+    max-width: 80%;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    background-color: #d7d7d7;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 1px 1px 15px 2px #000;
+
+    > .imgSeccion {
+      width: 100%;
+      height: auto;
+      max-width: 15rem;
+      border-radius: 100%;
+    }
+
+    > .textSeccion {
+        width: 100%;
+        text-align: center;
+        margin: 1rem 0rem;
+
+        > p:nth-child(1) {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ff0000;
+            margin-bottom: 0.5rem;
+        }
+
+        > p:nth-child(2), p:nth-child(3) {
+            font-size: 1.2rem;
+            color: #000;
+        }
+    }
+
+    > .btnSeccion {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        > button {
+            width: 100%;
+            max-width: fit-content;
+            padding: 0.8rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #ff0000;
+            text-align: center;
+            border: 1px solid #8f0000;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        > button:hover {
+            color: #d7d7d7;
+        }
+    }
+  }
+}
