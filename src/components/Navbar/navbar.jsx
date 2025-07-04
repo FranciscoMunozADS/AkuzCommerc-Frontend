@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./styles.css";
 
 export const navbar = () => {
-  const tokenJwt = true;
+  const tokenJwt = false;
 
   const setActiveClass = ({ isActive }) =>
     isActive ? `Route isActive` : "Route";

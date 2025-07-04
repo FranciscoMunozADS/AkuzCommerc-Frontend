@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "./../../context/UserContext";
 
 /***** Recordatorio *****/
 // useState para manejar datos del formulario
@@ -9,7 +9,7 @@ import { UserContext } from "../context/UserContext";
 // Link para navegar entre páginas sin recargar
 // UserContext para traer las funciones de registro y datos desde el contexto (register y token)
 
-const Register = () => {
+export const Register = () => {
   const navigate = useNavigate();
   const { register, token } = useContext(UserContext);
   const [signupData, setSignupData] = useState({

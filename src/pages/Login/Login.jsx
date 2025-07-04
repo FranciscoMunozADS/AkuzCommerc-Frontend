@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "./../../context/UserContext";
 
-const Login = () => {
+export const Login = () => {
   const navigate = useNavigate();
   const { login, token } = useContext(UserContext);
 
