@@ -67,7 +67,7 @@ const Register = () => {
       );
       navigate("/profile");
     } catch (error) {
-      alert("Error al registrar.");
+      alert(error.message);
     }
 
     //Limpia los campos del input despues del registro
@@ -97,7 +97,7 @@ const Register = () => {
         onSubmit={handleSubmit}
       >
         <h3 className="registerLogo mx-auto text-white px-4 py-2 mb-4">
-          Registrate
+          Regístrate
         </h3>
         {/* email */}
         <div className="bg-dark text-white p-4 rounded p-5">

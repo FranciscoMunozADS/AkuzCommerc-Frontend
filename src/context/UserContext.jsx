@@ -107,17 +107,20 @@ export const UserProvider = ({ children }) => {
   // Simulación de registro con token
   const register = async (email, password, telefono) => {
     // Validación de si existe el correo
-    const correoExiste = Usuario.some((user) => user.email === email);
+    const correoExiste = await Usuario.filter((user) => user.email === email);
+   /*  console.log(email);
+    console.log(user.email); */
+    console.log(correoExiste); 
 
-    if (correoExiste) {
+    if (correoExiste[0]) {
       throw new Error("Este correo ya está registrado.");
     }
     // Validación de si existe número telefónico
-    const telefonoExiste = Usuario.some(
+    const telefonoExiste = await Usuario.filter(
       (user) => user.telefono === Number(telefono)
     );
 
-    if (telefonoExiste) {
+    if (telefonoExiste[0]) {
       throw new Error("Este número ya está registrado.");
     }
 
