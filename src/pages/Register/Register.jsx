@@ -15,6 +15,7 @@ export const Register = () => {
   const navigate = useNavigate();
   const { register, token } = useContext(UserContext);
   const [signupData, setSignupData] = useState({
+    name: "",
     email: "",
     phone: "",
     urlAvatar: "",
@@ -41,6 +42,7 @@ export const Register = () => {
     // Validaciones dentro del botón
 
     if (
+      !signupData.name ||
       !signupData.email ||
       !signupData.password ||
       !signupData.confirmPassword ||
@@ -62,6 +64,7 @@ export const Register = () => {
     // método register desde el contexto
     try {
       await register(
+        signupData.name,
         signupData.email,
         signupData.password,
         signupData.phone,
@@ -75,6 +78,7 @@ export const Register = () => {
 
     //Limpia los campos del input despues del registro
     setSignupData({
+      name: "",
       email: "",
       phone: "",
       password: "",
@@ -105,8 +109,29 @@ export const Register = () => {
           <p className="text">Registrarse</p>
         </div>
         <form className="rounded px-5" onSubmit={handleSubmit}>
-          {/* email */}
           <div className="bg-dark text-white p-4 rounded p-5">
+            {/* Nombre */}
+            <div className="mb-3 row align-items-start">
+              <label
+                htmlFor="email"
+                className="col-sm-3 col-form-label text-sm-start"
+              >
+                Nombre Completo
+              </label>
+              <div className="col-sm-9">
+                <input
+                  type="text"
+                  className="form-control bg-light"
+                  id="name"
+                  name="name"
+                  autoComplete="username"
+                  placeholder="Juan Peréz"
+                  value={signupData.name}
+                  onChange={updateSignupData}
+                />
+              </div>
+            </div>
+            {/* email */}
             <div className="mb-3 row align-items-start">
               <label
                 htmlFor="email"

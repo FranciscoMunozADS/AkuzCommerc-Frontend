@@ -51,9 +51,25 @@ export const Usuario = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqEs7QDULIpNjmTV7oIZwoEKeS-nmASLZLYQ&s",
     historial: [
       {
+        id: 1,
+        num_orden: "XXXX-1",
         cantidad_vendida: 3,
         precio_producto: 41990,
         fecha_compra: "01072025",
+      },
+      {
+        id: 2,
+        num_orden: "XXXX-2",
+        cantidad_vendida: 6,
+        precio_producto: 83980,
+        fecha_compra: "04072025",
+      },
+            {
+        id: 3,
+        num_orden: "XXXX-3",
+        cantidad_vendida: 9,
+        precio_producto: 125970,
+        fecha_compra: "10072025",
       },
     ],
   },

@@ -2,12 +2,17 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { useContext } from "react";
 
-import { ErrorPage, HomePage, RegisterPage, ProfilePage, LoginPage } from "./pages/index";
-import { Footer, Navbar, ProductPage } from "./components";
+import {
+  ErrorPage,
+  HomePage,
+  RegisterPage,
+  ProfilePage,
+  LoginPage,
+} from "./pages/index";
+import { Footer, History, Navbar, ProductPage } from "./components";
 
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 
 function App() {
   const { token } = useContext(UserContext);
@@ -41,10 +46,7 @@ function App() {
               path="/profile"
               element={token ? <ProfilePage /> : <Navigate to="/login" />}
             />
-            <Route
-              path="/profile/history"
-              element={console.log("Historial Page")}
-            />
+            <Route path="/profile/history" element={<History />} />
             <Route
               path="/profile/addProduct"
               element={console.log("Nuevo Producto Page")}

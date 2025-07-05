@@ -22,7 +22,7 @@ export const productPage = () => {
   }, []);
 
   const handleReturn = () => {
-    navigate("/");
+    navigate(`/categoria/${categoria}`);
   };
 
   return (
@@ -32,7 +32,10 @@ export const productPage = () => {
           <p className="text">Producto Seleccionado</p>
         </div>
         {prod.map(
-          ({ urlImg, descripcion, precio, stock, descripcionDetallada }, index) => (
+          (
+            { urlImg, descripcion, precio, stock, descripcionDetallada },
+            index
+          ) => (
             <div key={index} className="content_product">
               <div className="left">
                 <img className="imgProduct" src={urlImg} alt={descripcion} />

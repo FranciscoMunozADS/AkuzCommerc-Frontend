@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { Usuario } from "../data/data.js"; // Database ficticia
+import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
@@ -9,9 +10,11 @@ export const UserProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")) || null
   );
 
+  const navigate = useNavigate();
+
   // Obtener perfil real con fetch
 
-/*
+  /*
   const getProfile = async (currentToken) => {
     if (!currentToken) return; // para evitar llamados innecesarios
 
@@ -34,7 +37,7 @@ export const UserProvider = ({ children }) => {
 
   // Login real con fetch
 
-/*
+  /*
   const login = async (email, password) => {
  
     try {
@@ -58,7 +61,7 @@ export const UserProvider = ({ children }) => {
 */
 
   // Register real con fetch
-/*  
+  /*  
   const register = async (email, password) => {
     
     try {
@@ -96,7 +99,8 @@ export const UserProvider = ({ children }) => {
       email: usuarioEncontrado.email,
       nombre_completo: usuarioEncontrado.nombre_completo,
       telefono: usuarioEncontrado.telefono,
-      urlAvatar: usuarioEncontrado.url_avatar
+      urlAvatar: usuarioEncontrado.url_avatar,
+      historial: usuarioEncontrado.historial,
     };
 
     localStorage.setItem("token", fakeToken);
@@ -106,12 +110,12 @@ export const UserProvider = ({ children }) => {
   };
 
   // Simulación de registro con token
-  const register = async (email, password, telefono, urlAvatar) => {
+  const register = async (nombre_completo,email, password, telefono, urlAvatar) => {
     // Validación de si existe el correo
     const correoExiste = await Usuario.filter((user) => user.email === email);
-   /*  console.log(email);
+    /*  console.log(email);
     console.log(user.email); */
-    console.log(correoExiste); 
+    console.log(correoExiste);
 
     if (correoExiste[0]) {
       throw new Error("Este correo ya está registrado.");
@@ -127,9 +131,9 @@ export const UserProvider = ({ children }) => {
 
     // Se crea un usuario falso con datos minimos para simular Registro
     const fakeToken = "fake-token-12345";
-    const fakeUser = { 
-      email, 
-      nombre_completo: "Usuario Nuevo", 
+    const fakeUser = {
+      email,
+      nombre_completo,
       telefono,
       urlAvatar,
     };
@@ -146,6 +150,7 @@ export const UserProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    navigate("/");
   };
 
   return (
