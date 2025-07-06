@@ -38,7 +38,7 @@ export const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // de esta manera no se actualiza la página (default de submit)
-
+    
     // Validaciones dentro del botón
 
     if (

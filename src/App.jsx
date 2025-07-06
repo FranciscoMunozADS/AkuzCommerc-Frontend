@@ -8,8 +8,15 @@ import {
   RegisterPage,
   ProfilePage,
   LoginPage,
+  ProductList,
 } from "./pages/index";
-import { Footer, History, Navbar, ProductPage } from "./components";
+import {
+  Footer,
+  History,
+  Navbar,
+  ProductPage,
+  RegisterProduct,
+} from "./components";
 
 import "./styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,12 +35,12 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/categoria/cafe" element={console.log("Cafe Page")} />
-            <Route path="/categoria/ajo" element={console.log("Ajo Page")} />
+            <Route path="/categoria/:categoria" element={<ProductList />} />
+            {/* <Route path="/categoria/:categoria" element={console.log("Ajo Page")} />
             <Route
-              path="/categoria/extra"
+              path="/categoria/:categoria"
               element={console.log("Extra Page")}
-            />
+            /> */}
             <Route path="/categoria/:categoria/:id" element={<ProductPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route
@@ -47,10 +54,7 @@ function App() {
               element={token ? <ProfilePage /> : <Navigate to="/login" />}
             />
             <Route path="/profile/history" element={<History />} />
-            <Route
-              path="/profile/addProduct"
-              element={console.log("Nuevo Producto Page")}
-            />
+            <Route path="/profile/addProduct" element={<RegisterProduct />} />
             {/* NotFound */}
             <Route path="/*" element={<ErrorPage />} />
           </Routes>

@@ -1,0 +1,30 @@
+.Container_regProd {
+  > .header {
+    width: 100%;
+    max-width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 2px solid #9a5615;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #d87b23;
+
+    > .text {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0px;
+    }
+  }
+
+    > form {
+    > div {
+      > .btnCreate {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
