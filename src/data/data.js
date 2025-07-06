@@ -9,7 +9,7 @@ export const Productos = [
     stock: 10,
     urlImg: "https://merello.cl/wp-content/uploads/2020/03/SACO-DE-CAFE-1.jpg",
     estatus: true,
-    categoria: "Cafe",
+    categoria: "cafe",
   },
   {
     id: "02",
@@ -22,7 +22,7 @@ export const Productos = [
     urlImg:
       "https://ajonegrouxo.com/wp-content/uploads/2023/10/2-1-Esencial-Cabezas-de-ajo-negro-%E2%80%93-Bolsa-de-200gr.-Medium-300x300.png",
     estatus: true,
-    categoria: "Ajo",
+    categoria: "ajo",
   },
   {
     id: "03",
@@ -35,7 +35,19 @@ export const Productos = [
     urlImg:
       "https://dojiw2m9tvv09.cloudfront.net/93845/product/X_miel2342.png?9&time=1751231939",
     estatus: true,
-    categoria: "Extra",
+    categoria: "extra",
+  },
+    {
+    id: "04",
+    sku: "",
+    descripcion: "Café Valle amazónico 500g",
+    descripcionDetallada:
+      "Cada bolsa de 500 gramos de Café Valle Amazónico es el resultado de un cuidadoso proceso que honra la tradición cafetera y la riqueza natural de su origen. La combinación de la altitud, el clima amazónico y la selección de la variedad Arábica, específicamente las subvariedades Castillo, Catimor y Bourbon, contribuyen a su perfil de sabor distintivo y su calidad excepcional.",
+    precio: 20000,
+    stock: 10,
+    urlImg: "https://nomadbrew.cl/cdn/shop/files/Gemini_Generated_Image_xjv1uvxjv1uvxjv1.png?v=1750180045&width=600",
+    estatus: true,
+    categoria: "cafe",
   },
 ];
 
@@ -51,9 +63,25 @@ export const Usuario = [
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqEs7QDULIpNjmTV7oIZwoEKeS-nmASLZLYQ&s",
     historial: [
       {
+        id: 1,
+        num_orden: "XXXX-1",
         cantidad_vendida: 3,
         precio_producto: 41990,
         fecha_compra: "01072025",
+      },
+      {
+        id: 2,
+        num_orden: "XXXX-2",
+        cantidad_vendida: 6,
+        precio_producto: 83980,
+        fecha_compra: "04072025",
+      },
+            {
+        id: 3,
+        num_orden: "XXXX-3",
+        cantidad_vendida: 9,
+        precio_producto: 125970,
+        fecha_compra: "10072025",
       },
     ],
   },

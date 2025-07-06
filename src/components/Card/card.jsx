@@ -5,7 +5,7 @@ import "./styles.css";
 
 export const card = ({ id, descripcion, precio, stock, urlImg, categoria }) => {
   // Recibe 4 valores mediante Props, para la creación de la Card
-  // TODO: Implementar vista de "Ver Mas..." y Agregar al Carrito
+  // TODO: Implementar Agregar al Carrito
 
   const navigate = useNavigate()
 
