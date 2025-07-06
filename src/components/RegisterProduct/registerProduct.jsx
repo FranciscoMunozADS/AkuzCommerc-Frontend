@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Banner } from "..";
 import "./styles.css";
 
 export const registerProduct = () => {
+  const navigate = useNavigate();
   const [addProd, setAddProd] = useState({
     titulo: "",
     descripcion: "",
@@ -36,7 +38,7 @@ export const registerProduct = () => {
     }
 
     //TODO: Implementar subida de data a la BD
-    alert("Producto Agregado con exito.")
+    alert("Producto Agregado con exito.");
 
     //Limpia los campos del input despues del registro
     setAddProd({
@@ -47,6 +49,10 @@ export const registerProduct = () => {
       stock: "",
       categoria: "",
     });
+  };
+
+  const handleProfile = () => {
+    navigate("/profile");
   };
 
   return (
@@ -175,7 +181,9 @@ export const registerProduct = () => {
                   value={addProd.categoria}
                   onChange={updateAddProd}
                 >
-                  <option value="" disabled>Selecciona</option>
+                  <option value="" disabled>
+                    Selecciona
+                  </option>
                   <option value="cafe">Café</option>
                   <option value="ajo">Ajo</option>
                   <option value="extra">Extra</option>
@@ -193,6 +201,9 @@ export const registerProduct = () => {
             </div>
           </div>
         </form>
+        <div className="btnBack">
+          <button onClick={handleProfile}>Volver</button>
+        </div>
       </div>
     </>
   );
