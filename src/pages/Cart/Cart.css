@@ -1,0 +1,16 @@
+.header {
+    width: 100%;
+    max-width: max-content;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 2px solid #000;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #D87B23;
+
+}
+
+.precioCart{
+    background-color: #D87B23;
+}

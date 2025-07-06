@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { formatClp } from "../../helpers/function";
+import { useCart } from "../../context/CartContext";
 import "./styles.css";
 
 export const card = ({ id, descripcion, precio, stock, urlImg, categoria }) => {
@@ -12,6 +13,8 @@ export const card = ({ id, descripcion, precio, stock, urlImg, categoria }) => {
     navigate(`/categoria/${categoria}/${id}`)
   }
 
+  const { addToCart } = useCart();
+
   return (
     <>
       <div className="Container_Card">
@@ -21,7 +24,7 @@ export const card = ({ id, descripcion, precio, stock, urlImg, categoria }) => {
         <p className="stock">Cantidad {stock}</p>
         <div className="btns">
           <button onClick={() => goProduct(categoria, id)}>Ver Mas...</button>
-          <button>Agregar</button>
+          <button onClick={() => addToCart({id, descripcion, precio, stock, urlImg, categoria})}>Agregar</button>
         </div>
       </div>
     </>

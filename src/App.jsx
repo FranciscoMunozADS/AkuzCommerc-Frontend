@@ -2,12 +2,14 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { useContext } from "react";
 
+
 import {
   ErrorPage,
   HomePage,
   RegisterPage,
   ProfilePage,
   LoginPage,
+  CartPage,
   ProductList,
 } from "./pages/index";
 import {
@@ -36,18 +38,13 @@ function App() {
             {/* Public Routes */}
             <Route path="/" element={<HomePage />} />
             <Route path="/categoria/:categoria" element={<ProductList />} />
-            {/* <Route path="/categoria/:categoria" element={console.log("Ajo Page")} />
-            <Route
-              path="/categoria/:categoria"
-              element={console.log("Extra Page")}
-            /> */}
             <Route path="/categoria/:categoria/:id" element={<ProductPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route
               path="/register"
               element={token ? <Navigate to="/profile" /> : <RegisterPage />}
             />
-            <Route path="/cart" element={console.log("Cart Page")} />
+            <Route path="/cart" element={<CartPage />} />
             {/* Private Routes */}
             <Route
               path="/profile"
