@@ -1,12 +1,14 @@
-import "./styles.css";
+import './App.css'
+import ProductManager from './Components/ProductManager'  
 
 function App() {
   
+
   return (
-    <>
-    <h2>Prueba del E-Commerce  Cesar Soto</h2>
+    <>   
+    <ProductManager />
     </>
   )
 }
 
-export default App;
+export default App
