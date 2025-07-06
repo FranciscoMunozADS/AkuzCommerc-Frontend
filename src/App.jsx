@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import { useContext } from "react";
 
-import { ErrorPage, HomePage, RegisterPage, ProfilePage, LoginPage } from "./pages/index";
+import { ErrorPage, HomePage, RegisterPage, ProfilePage, LoginPage, CartPage } from "./pages/index";
 import { Footer, Navbar, ProductPage } from "./components";
 
 import "./styles.css";
@@ -35,7 +35,7 @@ function App() {
               path="/register"
               element={token ? <Navigate to="/profile" /> : <RegisterPage />}
             />
-            <Route path="/cart" element={console.log("Cart Page")} />
+            <Route path="/cart" element={<CartPage/>} />
             {/* Private Routes */}
             <Route
               path="/profile"
