@@ -18,8 +18,6 @@ export const profilePage = () => {
     navigate("/profile/addProduct");
   };
 
-  console.log(user)
-
   return (
     <>
       <div className="Container_profile">

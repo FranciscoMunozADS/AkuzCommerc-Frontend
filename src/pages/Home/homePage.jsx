@@ -1,3 +1,5 @@
+// Hooks de React
+import { useEffect, useState } from "react";
 // Importar componentes a utilizar en la vista Home
 import { Banner, BtnNavigate, Card } from "../../components";
 // Imagenes del apartado de detalle de productos
@@ -11,6 +13,17 @@ import { Productos } from "../../data/data";
 import "./styles.css";
 
 export const homePage = () => {
+  const [random, setRandom] = useState([]);
+
+  useEffect(() => {
+    const limitRandom = [...Productos]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3);
+
+    setRandom(limitRandom);
+  }, []);
+
+
   return (
     <>
       <div className="Container_Home">
@@ -44,7 +57,7 @@ export const homePage = () => {
         </div>
         <div className="Content_Product">
           {/* Uso de MAP para recorrer los productos y asi mostrarlos en pantalla */}
-          {Productos.map((item) => (
+          {random.map((item) => (
             // Componente CARD, se le pasa por props lo que se va a mostrar
             <Card
               key={item.id}
