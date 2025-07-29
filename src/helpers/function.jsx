@@ -1,7 +1,11 @@
 export const formatClp = (price) => {
-  const format = price.toLocaleString("es-CL");
-  const value = `$ ${format}`;
-  return value;
+  const number = Number(price);
+  const format = number.toLocaleString("es-CL", {
+    style: "currency",
+    currency: "CLP",
+    minimumFractionDigits: 0,
+  });
+  return format;
 };
 
 export const formatCellNumber = (phone) => {

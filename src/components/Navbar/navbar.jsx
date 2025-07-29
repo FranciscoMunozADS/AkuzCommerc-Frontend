@@ -17,13 +17,13 @@ export const navbar = () => {
             <NavLink to="/" className={setActiveClass}>
               Home
             </NavLink>
-            <NavLink to="/categoria/cafe" className={setActiveClass}>
+            <NavLink to="/products/1" className={setActiveClass}>
               Cafés
             </NavLink>
-            <NavLink to="/categoria/ajo" className={setActiveClass}>
+            <NavLink to="/products/2" className={setActiveClass}>
               Ajos
             </NavLink>
-            <NavLink to="/categoria/extra" className={setActiveClass}>
+            <NavLink to="/products/3" className={setActiveClass}>
               Extras
             </NavLink>
           </div>
