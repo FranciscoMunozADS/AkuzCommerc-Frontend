@@ -16,9 +16,11 @@ export const homePage = () => {
   const [prod, setProd] = useState([]);
   const [random, setRandom] = useState([]);
 
+  const localhost = import.meta.env.VITE_LOCALHOST;
+
   const getData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/products`);
+      const response = await fetch(`${localhost}products`);
       const data = await response.json();
 
       if (response.ok) {
@@ -43,8 +45,6 @@ export const homePage = () => {
     }
   }, [prod]);
 
-
-  console.log(random)
   return (
     <>
       <div className="Container_Home">
@@ -83,7 +83,7 @@ export const homePage = () => {
             <Card
               key={`${item.id}-${index}`}
               id={item.id}
-              descripcion={item.descripciondetallada}
+              descripcion={item.descripcion}
               precio={item.precio_venta}
               stock={item.stock_actual}
               urlImg={item.url_fotografia}

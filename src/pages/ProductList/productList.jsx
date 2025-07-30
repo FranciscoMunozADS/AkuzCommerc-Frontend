@@ -10,13 +10,11 @@ export const productList = () => {
   const [prod, setProd] = useState([]);
   const { categoria } = useParams();
 
-  console.log(categoria);
-
+  const localhost = import.meta.env.VITE_LOCALHOST;
+  
   const getData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/products/${categoria}`
-      );
+      const response = await fetch(`${localhost}products/${categoria}`);
       const data = await response.json();
 
       console.log(data);
@@ -68,12 +66,13 @@ export const productList = () => {
             <Card
               key={`${item.id}-${index}`}
               id={item.id}
-              descripcion={item.descripciondetallada}
+              descripcion={item.descripcion}
               precio={item.precio_venta}
               stock={item.stock_actual}
               urlImg={item.url_fotografia}
-              categoria={item.categoria}
+              categoria={item.categoriaid}
             />
+
           ))}
         </div>
       </div>

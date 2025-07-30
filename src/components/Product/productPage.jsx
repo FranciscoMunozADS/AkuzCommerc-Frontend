@@ -8,13 +8,46 @@ export const productPage = () => {
   const navigate = useNavigate();
   const [prod, setProd] = useState([]);
 
+  const localhost = import.meta.env.VITE_LOCALHOST;
   const { categoria, id } = useParams();
 
   const getData = async () => {
-    const data = Productos.filter(
-      (e) => e.id === id && e.categoria === categoria
-    );
-    setProd(data);
+    try {
+      const response = await fetch(`${localhost}products/${categoria}`);
+      const data = await response.json();
+
+      const filterData = await data.filter(
+        (e) => e.id === Number(id) && e.categoriaid === Number(categoria)
+      );
+
+      console.log(filterData);
+      if (response.ok) {
+        setProd(filterData);
+      } else {
+        console.error("Error obteniendo productos:", data.message);
+      }
+    } catch (error) {
+      console.error("Error de conexión:", error);
+    }
+  };
+
+  const deleteData = async (id, categoria) => {
+    try {
+      const response = await fetch(`${localhost}products/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        navigate(`/products/${categoria}`);
+      } else {
+        console.error("Error en respuesta:", data.message);
+      }
+    } catch (error) {
+      console.error("Error de conexión:", error);
+    }
   };
 
   useEffect(() => {
@@ -22,7 +55,7 @@ export const productPage = () => {
   }, []);
 
   const handleReturn = () => {
-    navigate(`/categoria/${categoria}`);
+    navigate(`/products/${categoria}`);
   };
 
   return (
@@ -33,17 +66,27 @@ export const productPage = () => {
         </div>
         {prod.map(
           (
-            { urlImg, descripcion, precio, stock, descripcionDetallada },
+            {
+              url_fotografia,
+              descripcion,
+              precio_venta,
+              stock_actual,
+              descripciondetallada,
+            },
             index
           ) => (
             <div key={index} className="content_product">
               <div className="left">
-                <img className="imgProduct" src={urlImg} alt={descripcion} />
+                <img
+                  className="imgProduct"
+                  src={url_fotografia}
+                  alt={descripcion}
+                />
                 <div className="casilla">
-                  <p>Precio : {formatClp(precio)}</p>
+                  <p>Precio : {formatClp(precio_venta)}</p>
                 </div>
                 <div className="casilla">
-                  <p>Cantidad : {stock}</p>
+                  <p>Cantidad : {stock_actual}</p>
                 </div>
               </div>
               <div className="right">
@@ -51,12 +94,14 @@ export const productPage = () => {
                   <p>{descripcion}</p>
                 </div>
                 <div className="casilla">
-                  <p>{descripcionDetallada}</p>
+                  <p>{descripciondetallada}</p>
                 </div>
                 <div className="btnAdmin">
                   <button>Agregar</button>
                   <button>Modificar</button>
-                  <button>Eliminar</button>
+                  <button onClick={() => deleteData(id, categoria)}>
+                    Eliminar
+                  </button>
                 </div>
               </div>
             </div>
