@@ -7,15 +7,15 @@ export const btnNavigate = () => {
   const navigate = useNavigate();
 
   const handleCoffee = () => {
-    navigate("/categoria/cafe");
+    navigate("/products/1");
   };
 
   const handleGarlic = () => {
-    navigate("/categoria/ajo");
+    navigate("/products/2");
   };
 
   const handleExtra = () => {
-    navigate("/categoria/extra");
+    navigate("/products/3");
   };
 
   return (

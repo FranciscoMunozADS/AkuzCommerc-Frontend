@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { formatClp, formatDate } from "../../helpers/function";
@@ -6,6 +6,28 @@ import "./styles.css";
 
 export const history = () => {
   const { user } = useContext(UserContext);
+  const localhost = import.meta.env.VITE_LOCALHOST;
+
+  const getData = async () => {
+    try {
+      const response = await fetch(`${localhost}orders/${user.id || 1}`);
+      const data = await response.json();
+
+      console.log(data);
+      // if (response.ok) {
+      //   setProd(data);
+      // } else {
+      //   console.error("Error obteniendo productos:", data.message);
+      // }
+    } catch (error) {
+      console.error("Error de conexión:", error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   const navigate = useNavigate();
 
   const handleProfile = () => {

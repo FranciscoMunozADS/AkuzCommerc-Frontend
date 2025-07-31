@@ -37,7 +37,7 @@ export const Productos = [
     estatus: true,
     categoria: "extra",
   },
-    {
+  {
     id: "04",
     sku: "",
     descripcion: "Café Valle amazónico 500g",
@@ -45,7 +45,8 @@ export const Productos = [
       "Cada bolsa de 500 gramos de Café Valle Amazónico es el resultado de un cuidadoso proceso que honra la tradición cafetera y la riqueza natural de su origen. La combinación de la altitud, el clima amazónico y la selección de la variedad Arábica, específicamente las subvariedades Castillo, Catimor y Bourbon, contribuyen a su perfil de sabor distintivo y su calidad excepcional.",
     precio: 20000,
     stock: 10,
-    urlImg: "https://nomadbrew.cl/cdn/shop/files/Gemini_Generated_Image_xjv1uvxjv1uvxjv1.png?v=1750180045&width=600",
+    urlImg:
+      "https://nomadbrew.cl/cdn/shop/files/Gemini_Generated_Image_xjv1uvxjv1uvxjv1.png?v=1750180045&width=600",
     estatus: true,
     categoria: "cafe",
   },
@@ -76,7 +77,7 @@ export const Usuario = [
         precio_producto: 83980,
         fecha_compra: "04072025",
       },
-            {
+      {
         id: 3,
         num_orden: "XXXX-3",
         cantidad_vendida: 9,
