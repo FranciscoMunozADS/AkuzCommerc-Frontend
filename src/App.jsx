@@ -50,7 +50,7 @@ function App() {
               path="/profile"
               element={token ? <ProfilePage /> : <Navigate to="/login" />}
             />
-            <Route path="/profile/history" element={<History />} />
+            <Route path="/orders" element={<History />} />
             <Route path="/profile/addProduct" element={<RegisterProduct />} />
             {/* NotFound */}
             <Route path="/*" element={<ErrorPage />} />

@@ -15,23 +15,31 @@ export const Cart = () => {
   } = useCart();
   const { user, token } = useContext(UserContext); // Token de usuario simulado
   const [successMessage, setSuccessMessage] = useState("");
+  const localhost = import.meta.env.VITE_LOCALHOST;
 
   /***** Metodo FETCH para conectarse a la API (si hubiese backend)*****/
 
-  /*
-    const handleCheckout = async () => {
-        setSuccessMessage("");
-        if (!token) return; // para evitar ejecutar sin autenticación
+  const handleCheckout = async () => {
+    setSuccessMessage("");
+    if (!token) return; // para evitar ejecutar sin autenticación
 
-        try {
-        const response = await fetch("URL API", {
-            method: "POST",
-            headers: { "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, },
-            body: JSON.stringify({ cart }),
+    try {
+      const response = await fetch(`${localhost}checkout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer FAKE_TOKEN_123`,
+          // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          products: cart.map((item) => ({
+            product_id: item.id,
+            quantity: item.count,
+          })),
+        }),
       });
 
-      const data = await response.json();
+      await response.json();
       if (response.ok) {
         setSuccessMessage("Pedido realizado con éxito.");
         clearCart();
@@ -42,28 +50,6 @@ export const Cart = () => {
       console.error("Error en el checkout:", error);
       setSuccessMessage("Error de conexión con el servidor.");
     }
-*/
-
-  // Simulación de proceso de compra (checkout)
-
-  const handleCheckout = async () => {
-    setSuccessMessage("");
-
-    if (!token) {
-      setSuccessMessage("Por favor, inicia sesión para realizar la compra.");
-      return;
-    }
-
-    if (cart.length === 0) {
-      setSuccessMessage("Tu carrito está vacío.");
-      return;
-    }
-
-    setTimeout(() => {
-      setSuccessMessage("Compra simulada realizada con éxito.");
-      alert("Gracias por tu compra");
-      clearCart();
-    }, 1000); //retraso de 1 segundo para simular proceso de compra
   };
 
   return (

@@ -11,7 +11,7 @@ export const profilePage = () => {
   const navigate = useNavigate();
 
   const handleHistory = () => {
-    navigate("/profile/history");
+    navigate("/orders");
   };
 
   const handleAddProduct = () => {

@@ -17,7 +17,6 @@ export const productList = () => {
       const response = await fetch(`${localhost}products/${categoria}`);
       const data = await response.json();
 
-      console.log(data);
       if (response.ok) {
         setProd(data);
       } else {
