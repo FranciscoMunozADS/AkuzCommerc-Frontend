@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { UserContext } from "../../context/UserContext";
 import { formatClp } from "../../helpers/function";

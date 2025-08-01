@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { formatClp } from "../../helpers/function";
 import { Productos } from "../../data/data";
 import "./styles.css";
+import { useCart } from "../../context/CartContext";
 
 export const productPage = () => {
   const navigate = useNavigate();
@@ -58,6 +59,8 @@ export const productPage = () => {
     navigate(`/products/${categoria}`);
   };
 
+  const { addToCart } = useCart();
+
   return (
     <>
       <div className="Container_Product">
@@ -67,11 +70,13 @@ export const productPage = () => {
         {prod.map(
           (
             {
-              url_fotografia,
+              id,
               descripcion,
-              precio_venta,
-              stock_actual,
               descripciondetallada,
+              precio_venta,
+              url_fotografia,
+              stock_actual,
+              categoria,
             },
             index
           ) => (
@@ -97,7 +102,20 @@ export const productPage = () => {
                   <p>{descripciondetallada}</p>
                 </div>
                 <div className="btnAdmin">
-                  <button>Agregar</button>
+                  <button
+                    onClick={() =>
+                      addToCart({
+                        id,
+                        descripcion: descripcion,
+                        precio: precio_venta,
+                        stock: stock_actual,
+                        urlImg: url_fotografia,
+                        categoria,
+                      })
+                    }
+                  >
+                    Agregar
+                  </button>
                   <button>Modificar</button>
                   <button onClick={() => deleteData(id, categoria)}>
                     Eliminar
