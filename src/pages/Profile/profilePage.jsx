@@ -10,6 +10,10 @@ export const profilePage = () => {
   const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
 
+  if (!user) {
+    return  <div>Cargando Perfil...</div>; 
+  }
+
   const handleHistory = () => {
     navigate("/profile/history");
   };

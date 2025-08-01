@@ -165,7 +165,7 @@ export const Register = () => {
               </label>
               <div className="col-sm-9">
                 <input
-                  type="number"
+                  type="text"
                   className="form-control bg-light"
                   id="phone"
                   name="phone"
