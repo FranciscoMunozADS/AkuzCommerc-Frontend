@@ -9,16 +9,18 @@ import {
 import "./styles.css";
 
 export const history = () => {
-  // const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [orders, setOrders] = useState([]);
   const localhost = import.meta.env.VITE_LOCALHOST;
+
+console.log(user)
 
   const getData = async () => {
     try {
       const response = await fetch(`${localhost}orders`);
       const data = await response.json();
 
-      const filterData = await data.filter((e) => e.id_usuario === 1);
+      const filterData = await data.filter((e) => e.id_usuario === user.id);
 
       if (response.ok) {
         setOrders(filterData);

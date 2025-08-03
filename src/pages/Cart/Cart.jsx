@@ -28,8 +28,8 @@ export const Cart = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer FAKE_TOKEN_123`,
-          // Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer FAKE_TOKEN_123`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           products: cart.map((item) => ({

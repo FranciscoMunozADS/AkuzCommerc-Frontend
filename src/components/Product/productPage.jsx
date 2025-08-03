@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { formatClp } from "../../helpers/function";
 import { Productos } from "../../data/data";
@@ -7,6 +7,7 @@ import { useCart } from "../../context/CartContext";
 
 export const productPage = () => {
   const navigate = useNavigate();
+
   const [prod, setProd] = useState([]);
 
   const localhost = import.meta.env.VITE_LOCALHOST;
