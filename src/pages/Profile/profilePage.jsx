@@ -51,7 +51,7 @@ export const profilePage = () => {
           <p>¿Desea ver nuestro Catalogo?</p>
           <BtnNavigate />
         </div>
-        <div className="content_producto">
+        <div className={!user?.is_admin ? "disabled" : "content_producto"}>
           <p>¿Agregar nuevo Producto?</p>
           <button className="btnAddProd" onClick={handleAddProduct}>
             Agregar nuevo Producto

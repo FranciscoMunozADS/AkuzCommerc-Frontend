@@ -5,7 +5,7 @@ import { UserContext } from "../../context/UserContext";
 import "./styles.css";
 
 export const registerProduct = () => {
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const localhost = import.meta.env.VITE_LOCALHOST;
   const pruebaUser = user.idUsuario || 1;
 
@@ -31,6 +31,8 @@ export const registerProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // de esta manera no se actualiza la página (default de submit)
+
+    if (!token) return;
 
     if (
       !addProd.sku ||
@@ -60,7 +62,10 @@ export const registerProduct = () => {
     try {
       const response = await fetch(`${localhost}products`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(prodBody),
       });
       const data = await response.json();
@@ -147,6 +152,7 @@ export const registerProduct = () => {
               <div className="col-sm-9">
                 <input
                   type="text"
+                  maxLength="250"
                   className="form-control bg-light"
                   id="descripciondetallada"
                   name="descripciondetallada"
