@@ -4,16 +4,17 @@ import { UserContext } from "../../context/UserContext";
 import { useCart } from "../../context/CartContext";
 import { formatClp } from "../../helpers/function";
 import "./styles.css";
+import { Modal } from "..";
 
 export const productPage = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [prod, setProd] = useState([]);
+  const localhost = import.meta.env.VITE_LOCALHOST;
+
+  const { categoria, id } = useParams();
   const { user, token } = useContext(UserContext);
 
   const navigate = useNavigate();
-
-  const [prod, setProd] = useState([]);
-
-  const localhost = import.meta.env.VITE_LOCALHOST;
-  const { categoria, id } = useParams();
 
   const getData = async () => {
     try {
@@ -123,7 +124,10 @@ export const productPage = () => {
                   >
                     Agregar
                   </button>
-                  <button className={user?.is_admin ? "" : "disabled"}>
+                  <button
+                    className={user?.is_admin ? "" : "disabled"}
+                    onClick={() => setShowModal(true)}
+                  >
                     Modificar
                   </button>
                   <button
@@ -141,6 +145,15 @@ export const productPage = () => {
           <button onClick={handleReturn}>Volver</button>
         </div>
       </div>
+
+      <Modal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title="Actualizar Producto"
+        prod = {prod}
+        id = {id}
+      >
+      </Modal>
     </>
   );
 };
