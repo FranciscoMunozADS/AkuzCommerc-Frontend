@@ -13,8 +13,6 @@ export const history = () => {
   const [orders, setOrders] = useState([]);
   const localhost = import.meta.env.VITE_LOCALHOST;
 
-console.log(user)
-
   const getData = async () => {
     try {
       const response = await fetch(`${localhost}orders`);

@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { formatClp } from "../../helpers/function";
-import { Productos } from "../../data/data";
-import "./styles.css";
+import { UserContext } from "../../context/UserContext";
 import { useCart } from "../../context/CartContext";
+import { formatClp } from "../../helpers/function";
+import "./styles.css";
 
 export const productPage = () => {
+  const { user, token } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const [prod, setProd] = useState([]);
@@ -22,7 +24,6 @@ export const productPage = () => {
         (e) => e.id === Number(id) && e.categoriaid === Number(categoria)
       );
 
-      console.log(filterData);
       if (response.ok) {
         setProd(filterData);
       } else {
@@ -33,11 +34,16 @@ export const productPage = () => {
     }
   };
 
-  const deleteData = async (id, categoria) => {
+  const deleteData = async () => {
+    if (!token) return;
+
     try {
       const response = await fetch(`${localhost}products/${id}`, {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
       const data = await response.json();
 
@@ -117,8 +123,13 @@ export const productPage = () => {
                   >
                     Agregar
                   </button>
-                  <button>Modificar</button>
-                  <button onClick={() => deleteData(id, categoria)}>
+                  <button className={user?.is_admin ? "" : "disabled"}>
+                    Modificar
+                  </button>
+                  <button
+                    className={user?.is_admin ? "" : "disabled"}
+                    onClick={deleteData}
+                  >
                     Eliminar
                   </button>
                 </div>
