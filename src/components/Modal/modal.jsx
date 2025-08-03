@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
-export const modal = ({ isOpen, onClose, title, prod, id }) => {
+export const modal = ({ isOpen, onClose, title, prod, id, categoria }) => {
   const { token } = useContext(UserContext);
   const localhost = import.meta.env.VITE_LOCALHOST;
   const [formData, setFormData] = useState({
@@ -12,6 +13,8 @@ export const modal = ({ isOpen, onClose, title, prod, id }) => {
     stock_actual: 0,
     url_fotografia: "",
   });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (prod && prod.length > 0) {
@@ -60,8 +63,7 @@ export const modal = ({ isOpen, onClose, title, prod, id }) => {
 
       if (response.ok) {
         alert(data);
-        onClose();
-        window.location.reload();
+        navigate(`/products/${categoria}`);
       } else {
         console.error("Error actualizando:", data);
       }

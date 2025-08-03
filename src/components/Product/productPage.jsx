@@ -150,10 +150,10 @@ export const productPage = () => {
         isOpen={showModal}
         onClose={() => setShowModal(false)}
         title="Actualizar Producto"
-        prod = {prod}
-        id = {id}
-      >
-      </Modal>
+        prod={prod}
+        id={id}
+        categoria={categoria}
+      ></Modal>
     </>
   );
 };
