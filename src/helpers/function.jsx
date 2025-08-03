@@ -18,14 +18,27 @@ export const formatCellNumber = (phone) => {
   return temporal;
 };
 
-export const formatDate = (date) => {
-  if (!/^\d{8}$/.test(date)) return "Fecha inválida";
+export const formatDate = (isoDate) => {
+  const dateObj = new Date(isoDate);
 
-  const dia = date.slice(0, 2);
-  const mes = date.slice(2, 4);
-  const año = date.slice(4, 8);
+  if (isNaN(dateObj)) return "Fecha inválida";
+
+  const dia = String(dateObj.getDate()).padStart(2, "0");
+  const mes = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const año = dateObj.getFullYear();
 
   return `${dia} / ${mes} / ${año}`;
+};
+
+export const generateOrderNumber = (fecha_compra, id) => {
+  const date = new Date(fecha_compra);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  const paddedId = String(id).padStart(5, "0");
+
+  return `ORD-${year}${month}${day}-${paddedId}`;
 };
 
 export const titleCase = (string) => {

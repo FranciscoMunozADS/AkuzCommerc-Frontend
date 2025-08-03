@@ -1,7 +1,5 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-const API_URL = "http://localhost:3000";
-
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -9,6 +7,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
+  const localhost = import.meta.env.VITE_LOCALHOST
 
   const navigate = useNavigate();
 
@@ -18,7 +17,7 @@ export const UserProvider = ({ children }) => {
     if (!currentToken) return;
 
     try {
-      const response = await fetch("http://localhost:3000/profile", {
+      const response = await fetch(`${localhost}profile`, {
         headers: { Authorization: `Bearer ${currentToken}` },
       });
 
@@ -47,7 +46,7 @@ export const UserProvider = ({ children }) => {
   const register = async (name, email, password, phone, picture) => {
     try {
       // Registro
-      const response = await fetch(`${API_URL}/register`, {
+      const response = await fetch(`${localhost}register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -69,7 +68,7 @@ export const UserProvider = ({ children }) => {
       console.log("Usuario registrado:", data);
 
       // Hacer login automáticamente
-      const loginResponse = await fetch(`${API_URL}/login`, {
+      const loginResponse = await fetch(`${localhost}login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ e_mail: email, password }),
@@ -103,7 +102,7 @@ export const UserProvider = ({ children }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch(`${localhost}login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ e_mail: email, password }),

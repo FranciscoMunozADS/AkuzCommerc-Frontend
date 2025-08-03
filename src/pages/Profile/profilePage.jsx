@@ -15,7 +15,7 @@ export const profilePage = () => {
   }
 
   const handleHistory = () => {
-    navigate("/profile/history");
+    navigate("/orders");
   };
 
   const handleAddProduct = () => {
