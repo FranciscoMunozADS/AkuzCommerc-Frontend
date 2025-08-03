@@ -10,8 +10,12 @@ export const profilePage = () => {
   const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
 
+  if (!user) {
+    return  <div>Cargando Perfil...</div>; 
+  }
+
   const handleHistory = () => {
-    navigate("/profile/history");
+    navigate("/orders");
   };
 
   const handleAddProduct = () => {
@@ -26,14 +30,14 @@ export const profilePage = () => {
         </div>
         <div className="card_info">
           <div className="imgProfile">
-            <img src={user.urlAvatar} alt={user.nombre_completo} />
+            <img src={user.url_avatar} alt={user.nombre_completo} />
           </div>
           <div className="textProfile">
             <div className="casilla">
               <p>{user.nombre_completo}</p>
             </div>
             <div className="casilla">
-              <p>{user.email}</p>
+              <p>{user.e_mail}</p>
             </div>
             <div className="casilla">
               <p>{formatCellNumber(user.telefono)}</p>
@@ -47,7 +51,7 @@ export const profilePage = () => {
           <p>¿Desea ver nuestro Catalogo?</p>
           <BtnNavigate />
         </div>
-        <div className="content_producto">
+        <div className={!user?.is_admin ? "disabled" : "content_producto"}>
           <p>¿Agregar nuevo Producto?</p>
           <button className="btnAddProd" onClick={handleAddProduct}>
             Agregar nuevo Producto

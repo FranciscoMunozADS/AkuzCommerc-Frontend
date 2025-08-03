@@ -7,4 +7,4 @@ export { btnNavigate as BtnNavigate } from "./BtnNavigate/btnNavigate";
 export { productPage as ProductPage } from "./Product/productPage";
 export { history as History } from "./History/history";
 export { registerProduct as RegisterProduct } from "./RegisterProduct/registerProduct";
-
+export { modal as Modal } from './Modal/modal'

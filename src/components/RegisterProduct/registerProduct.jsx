@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Banner } from "..";
+import { UserContext } from "../../context/UserContext";
 import "./styles.css";
 
 export const registerProduct = () => {
+  const { user, token } = useContext(UserContext);
+  const localhost = import.meta.env.VITE_LOCALHOST;
+  const pruebaUser = user.idUsuario || 1;
+
   const navigate = useNavigate();
+
   const [addProd, setAddProd] = useState({
-    titulo: "",
+    sku: "",
     descripcion: "",
-    precio: 0,
-    imagen: "",
-    stock: 0,
-    categoria: "",
+    descripciondetallada: "",
+    precio_venta: 0,
+    url_fotografia: "",
+    stock_actual: 0,
+    categoriaid: "",
   });
 
   const updateAddProd = (e) => {
@@ -25,29 +32,58 @@ export const registerProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // de esta manera no se actualiza la página (default de submit)
 
+    if (!token) return;
+
     if (
-      !addProd.titulo ||
+      !addProd.sku ||
       !addProd.descripcion ||
-      !addProd.precio ||
-      !addProd.imagen ||
-      !addProd.stock ||
-      !addProd.categoria
+      !addProd.descripciondetallada ||
+      !addProd.precio_venta ||
+      !addProd.url_fotografia ||
+      !addProd.stock_actual ||
+      !addProd.categoriaid
     ) {
       alert("Completa todos los campos.");
       return;
     }
 
-    //TODO: Implementar subida de data a la BD
-    alert("Producto Agregado con exito.");
+    const prodBody = {
+      sku: addProd.sku,
+      descripcion: addProd.descripcion,
+      descripcionDetallada: addProd.descripciondetallada,
+      precio_venta: addProd.precio_venta,
+      url_fotografia: addProd.url_fotografia,
+      stock_actual: addProd.stock_actual,
+      estatus: "activo",
+      id_categoria: addProd.categoriaid,
+      id_usuario: pruebaUser,
+    };
+
+    try {
+      const response = await fetch(`${localhost}products`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(prodBody),
+      });
+      const data = await response.json();
+
+      console.log(data);
+    } catch (error) {
+      console.error("error de conexión:", error);
+    }
 
     //Limpia los campos del input despues del registro
     setAddProd({
-      titulo: "",
+      sku: "",
       descripcion: "",
-      precio: "",
-      imagen: "",
-      stock: "",
-      categoria: "",
+      descripciondetallada: "",
+      precio_venta: "",
+      url_fotografia: "",
+      stock_actual: "",
+      categoriaid: "",
     });
   };
 
@@ -65,10 +101,30 @@ export const registerProduct = () => {
 
         <form className="rounded px-5" onSubmit={handleSubmit}>
           <div className="bg-dark text-white p-4 rounded p-5">
+            {/* SKU */}
+            <div className="mb-3 row align-items-start">
+              <label
+                htmlFor="sku"
+                className="col-sm-3 col-form-label text-sm-start"
+              >
+                SKU
+              </label>
+              <div className="col-sm-9">
+                <input
+                  type="text"
+                  className="form-control bg-light"
+                  id="sku"
+                  name="sku"
+                  placeholder="Ejemplo: CO001, TO002, AJ003"
+                  value={addProd.sku}
+                  onChange={updateAddProd}
+                />
+              </div>
+            </div>
             {/* Titulo */}
             <div className="mb-3 row align-items-start">
               <label
-                htmlFor="titulo"
+                htmlFor="descripcion"
                 className="col-sm-3 col-form-label text-sm-start"
               >
                 Titulo
@@ -77,10 +133,10 @@ export const registerProduct = () => {
                 <input
                   type="text"
                   className="form-control bg-light"
-                  id="titulo"
-                  name="titulo"
+                  id="descripcion"
+                  name="descripcion"
                   placeholder="Ejemplo: Tomates, Lechuga, Ajos, Cafes"
-                  value={addProd.titulo}
+                  value={addProd.descripcion}
                   onChange={updateAddProd}
                 />
               </div>
@@ -88,7 +144,7 @@ export const registerProduct = () => {
             {/* Descripción */}
             <div className="mb-3 row align-items-start">
               <label
-                htmlFor="descripcion"
+                htmlFor="descripciondetallada"
                 className="col-sm-3 col-form-label text-sm-start"
               >
                 Descripcion
@@ -96,11 +152,12 @@ export const registerProduct = () => {
               <div className="col-sm-9">
                 <input
                   type="text"
+                  maxLength="250"
                   className="form-control bg-light"
-                  id="descripcion"
-                  name="descripcion"
+                  id="descripciondetallada"
+                  name="descripciondetallada"
                   placeholder="Ejemplo : Producto 100% natural proveniente de xxx sector..."
-                  value={addProd.descripcion}
+                  value={addProd.descripciondetallada}
                   onChange={updateAddProd}
                 />
               </div>
@@ -108,7 +165,7 @@ export const registerProduct = () => {
             {/* Precio */}
             <div className="mb-3 row align-items-start">
               <label
-                htmlFor="precio"
+                htmlFor="precio_venta"
                 className="col-sm-3 col-form-label text-sm-start"
               >
                 Precio
@@ -117,9 +174,9 @@ export const registerProduct = () => {
                 <input
                   type="number"
                   className="form-control bg-light"
-                  id="precio"
-                  name="precio"
-                  value={addProd.precio}
+                  id="precio_venta"
+                  name="precio_venta"
+                  value={addProd.precio_venta}
                   onChange={updateAddProd}
                   min={0}
                 />
@@ -128,7 +185,7 @@ export const registerProduct = () => {
             {/* Imagen */}
             <div className="mb-3 row align-items-start">
               <label
-                htmlFor="imagen"
+                htmlFor="url_fotografia"
                 className="col-sm-3 col-form-label text-sm-start"
               >
                 Imagen
@@ -137,10 +194,10 @@ export const registerProduct = () => {
                 <input
                   type="text"
                   className="form-control bg-light"
-                  id="imagen"
-                  name="imagen"
+                  id="url_fotografia"
+                  name="url_fotografia"
                   placeholder="Ejemplo : https://pbs.twimg.com/media/FRn1TQ0XMAAHx4.."
-                  value={addProd.imagen}
+                  value={addProd.url_fotografia}
                   onChange={updateAddProd}
                 />
               </div>
@@ -148,7 +205,7 @@ export const registerProduct = () => {
             {/* Stock */}
             <div className="mb-3 row align-items-start">
               <label
-                htmlFor="stock"
+                htmlFor="stock_actual"
                 className="col-sm-3 col-form-label text-sm-start"
               >
                 Stock
@@ -157,9 +214,9 @@ export const registerProduct = () => {
                 <input
                   type="number"
                   className="form-control bg-light"
-                  id="stock"
-                  name="stock"
-                  value={addProd.stock}
+                  id="stock_actual"
+                  name="stock_actual"
+                  value={addProd.stock_actual}
                   onChange={updateAddProd}
                   min={0}
                 />
@@ -168,7 +225,7 @@ export const registerProduct = () => {
             {/* Categoria */}
             <div className="mb-3 row align-items-start">
               <label
-                htmlFor="categoria"
+                htmlFor="categoriaid"
                 className="col-sm-3 col-form-label text-sm-start"
               >
                 Categoría
@@ -176,17 +233,17 @@ export const registerProduct = () => {
               <div className="col-sm-9">
                 <select
                   className="form-select"
-                  id="categoria"
-                  name="categoria"
-                  value={addProd.categoria}
+                  id="categoriaid"
+                  name="categoriaid"
+                  value={addProd.categoriaid}
                   onChange={updateAddProd}
                 >
                   <option value="" disabled>
                     Selecciona
                   </option>
-                  <option value="cafe">Café</option>
-                  <option value="ajo">Ajo</option>
-                  <option value="extra">Extra</option>
+                  <option value="1">Café</option>
+                  <option value="2">Ajo</option>
+                  <option value="3">Extra</option>
                 </select>
               </div>
             </div>

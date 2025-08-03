@@ -37,8 +37,8 @@ function App() {
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/categoria/:categoria" element={<ProductList />} />
-            <Route path="/categoria/:categoria/:id" element={<ProductPage />} />
+            <Route path="/products/:categoria" element={<ProductList />} />
+            <Route path="/products/:categoria/:id" element={<ProductPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route
               path="/register"
@@ -50,7 +50,7 @@ function App() {
               path="/profile"
               element={token ? <ProfilePage /> : <Navigate to="/login" />}
             />
-            <Route path="/profile/history" element={<History />} />
+            <Route path="/orders" element={<History />} />
             <Route path="/profile/addProduct" element={<RegisterProduct />} />
             {/* NotFound */}
             <Route path="/*" element={<ErrorPage />} />

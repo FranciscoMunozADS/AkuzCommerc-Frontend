@@ -7,11 +7,11 @@ export const card = ({ id, descripcion, precio, stock, urlImg, categoria }) => {
   // Recibe 4 valores mediante Props, para la creación de la Card
   // TODO: Implementar Agregar al Carrito
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const goProduct = (categoria, id) => {
-    navigate(`/categoria/${categoria}/${id}`)
-  }
+    navigate(`/products/${categoria}/${id}`);
+  };
 
   const { addToCart } = useCart();
 
@@ -24,7 +24,13 @@ export const card = ({ id, descripcion, precio, stock, urlImg, categoria }) => {
         <p className="stock">Cantidad {stock}</p>
         <div className="btns">
           <button onClick={() => goProduct(categoria, id)}>Ver Mas...</button>
-          <button onClick={() => addToCart({id, descripcion, precio, stock, urlImg, categoria})}>Agregar</button>
+          <button
+            onClick={() =>
+              addToCart({ id, descripcion, precio, stock, urlImg, categoria })
+            }
+          >
+            Agregar
+          </button>
         </div>
       </div>
     </>

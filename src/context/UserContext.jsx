@@ -1,7 +1,5 @@
 import { createContext, useState } from "react";
-import { Usuario } from "../data/data.js"; // Database ficticia
 import { useNavigate } from "react-router-dom";
-
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -9,139 +7,122 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
+  const localhost = import.meta.env.VITE_LOCALHOST
 
   const navigate = useNavigate();
 
-  // Obtener perfil real con fetch
+  // Obtener perfil
 
-  /*
   const getProfile = async (currentToken) => {
-    if (!currentToken) return; // para evitar llamados innecesarios
+    if (!currentToken) return;
 
     try {
-      const response = await fetch("URL API PERFIL", {
-        headers: { Authorization: `Bearer ${currentToken || token}` },
+      const response = await fetch(`${localhost}profile`, {
+        headers: { Authorization: `Bearer ${currentToken}` },
       });
-      const data = await response.json();
-      if (response.ok) {
-        setUser(data);
-        localStorage.setItem("user", JSON.stringify(data));
-    } else {
-      console.error("Error obteniendo perfil:", data.message);
-    }
-  } catch (error) {
-    console.error("Error de conexión:", error);
-  }
-  };
-*/
 
-  // Login real con fetch
-
-  /*
-  const login = async (email, password) => {
- 
-    try {
-      const response = await fetch("RUTA API LOGIN", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
       const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-        setToken(data.token);
-        await getProfile(data.token); // <-- recuerda crear esta función si usas backend real
-    } else {
-      console.error("error en login:", data.message);
-    }
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error al obtener el perfil.");
+      }
+
+      setUser(data.user);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      return data.user;
     } catch (error) {
-      console.error("error de conexión:", error);
+      console.error("Error al obtener perfil:", error.message);
+      throw error;
     }
   };
-*/
 
   // Register real con fetch
-  /*  
-  const register = async (email, password) => {
-    
-    try {
-      const response = await fetch("URL API REGISTER", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-        setToken(data.token);
-        await getProfile(data.token);
-      } else {
-        console.error("error en registro:", data.message);
-      }
-    } catch (error) {
-      console.error("error de conexión:", error);
-    }
-*/
 
-  // Simulación de Login con token
-
-  const login = async (email, password) => {
-    const usuarioEncontrado = Usuario.find(
-      (user) => user.email === email && user.password === password
-    );
-
-    if (!usuarioEncontrado) {
-      throw new Error("Credenciales inválidas.");
-    }
-
-    const fakeToken = "fake-token-12345";
-    const fakeUser = {
-      email: usuarioEncontrado.email,
-      nombre_completo: usuarioEncontrado.nombre_completo,
-      telefono: usuarioEncontrado.telefono,
-      urlAvatar: usuarioEncontrado.url_avatar,
-      historial: usuarioEncontrado.historial,
-    };
-
-    localStorage.setItem("token", fakeToken);
-    localStorage.setItem("user", JSON.stringify(fakeUser));
-    setToken(fakeToken);
-    setUser(fakeUser);
+  const generateIdUsuario = () => {
+    return `user${Date.now()}${Math.floor(Math.random() * 1000)}`;
   };
 
-  // Simulación de registro con token
-  const register = async (nombre_completo,email, password, telefono, urlAvatar) => {
-    // Validación de si existe el correo
-    const correoExiste = await Usuario.filter((user) => user.email === email);
-    /*  console.log(email);
-    console.log(user.email); */
-    console.log(correoExiste);
+  const register = async (name, email, password, phone, picture) => {
+    try {
+      // Registro
+      const response = await fetch(`${localhost}register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          idUsuario: generateIdUsuario(),
+          nombre_completo: name,
+          telefono: phone,
+          e_mail: email,
+          password,
+          url_avatar: picture,
+        }),
+      });
 
-    if (correoExiste[0]) {
-      throw new Error("Este correo ya está registrado.");
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Error en el registro.");
+      }
+
+      console.log("Usuario registrado:", data);
+
+      // Hacer login automáticamente
+      const loginResponse = await fetch(`${localhost}login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ e_mail: email, password }),
+      });
+
+      const loginData = await loginResponse.json();
+
+      if (!loginResponse.ok) {
+        throw new Error(
+          loginData.error || "Error al iniciar sesión después del registro."
+        );
+      }
+
+      // Guardar token y obtener perfil
+      localStorage.setItem("token", loginData.token);
+      setToken(loginData.token);
+
+      const perfil = await getProfile(loginData.token);
+      return perfil;
+    } catch (error) {
+      console.error("Error en registro:", error.message);
+      throw error;
     }
-    // Validación de si existe número telefónico
-    const telefonoExiste = await Usuario.filter(
-      (user) => user.telefono === Number(telefono)
-    );
+  };
 
-    if (telefonoExiste[0]) {
-      throw new Error("Este número ya está registrado.");
+  /****** ******/
+
+  const login = async (email, password) => {
+    if (!email || !password) {
+      throw new Error("Debes ingresar email y contraseña.");
     }
 
-    // Se crea un usuario falso con datos minimos para simular Registro
-    const fakeToken = "fake-token-12345";
-    const fakeUser = {
-      email,
-      nombre_completo,
-      telefono,
-      urlAvatar,
-    };
+    try {
+      const response = await fetch(`${localhost}login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ e_mail: email, password }),
+      });
 
-    localStorage.setItem("token", fakeToken);
-    localStorage.setItem("user", JSON.stringify(fakeUser));
-    setToken(fakeToken);
-    setUser(fakeUser);
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Credenciales incorrectas.");
+      }
+
+      // Guardar token y obtener perfil
+      localStorage.setItem("token", data.token);
+      setToken(data.token);
+
+      const perfil = await getProfile(data.token);
+      return perfil;
+    } catch (error) {
+      throw new Error(error.message || "Error al iniciar sesión.");
+    }
   };
 
   // logout
