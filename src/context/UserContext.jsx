@@ -65,7 +65,7 @@ export const UserProvider = ({ children }) => {
         throw new Error(data.error || "Error en el registro.");
       }
 
-      console.log("Usuario registrado:", data);
+      // console.log("Usuario registrado:", data);
 
       // Hacer login automáticamente
       const loginResponse = await fetch(`${localhost}login`, {

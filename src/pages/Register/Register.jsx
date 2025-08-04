@@ -72,7 +72,7 @@ export const Register = () => {
       );
       navigate("/profile");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       alert(error.message);
     }
 
